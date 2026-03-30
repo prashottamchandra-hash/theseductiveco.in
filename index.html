@@ -4,6 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Seductive Co — Coming Soon</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0CXD50LD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NM0CXD50LD');
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -547,10 +555,10 @@
         <span class="contact-label">WhatsApp</span>
         <span class="contact-value">Chat with Us</span>
       </a>
-      <a href="mailto:hello@theseductiveco.com" class="contact-card reveal">
+      <a href="/cdn-cgi/l/email-protection#a7cfc2cbcbc8e7d3cfc2d4c2c3d2c4d3ced1c2c4c889c4c8ca" class="contact-card reveal">
         <div class="contact-icon icon-email">✉️</div>
         <span class="contact-label">Email</span>
-        <span class="contact-value">hello@theseductiveco.com</span>
+        <span class="contact-value"><span class="__cf_email__" data-cfemail="87efe2ebebe8c7f3efe2f4e2e3f2e4f3eef1e2e4e8a9e4e8ea">[email&#160;protected]</span></span>
       </a>
     </div>
   </section>
@@ -566,7 +574,7 @@
     <div class="footer-copy">© 2025 The Seductive Co · All rights reserved</div>
   </footer>
 
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Cursor
     const cursor = document.getElementById('cursor');
     const ring = document.getElementById('cursor-ring');
@@ -606,11 +614,3 @@
       e.preventDefault();
       const email = document.getElementById('emailInput').value;
       if (email) {
-        document.querySelector('.signup-form').style.display = 'none';
-        document.querySelector('.form-note').style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-      }
-    }
-  </script>
-</body>
-</html>
