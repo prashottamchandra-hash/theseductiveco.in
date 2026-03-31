@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop — The Seductive Co</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NM0CXD50LD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NM0CXD50LD');
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black: #0d0b0a; --off-white: #faf7f4; --beige: #e8ddd2;
+      --nude: #c9b8a8; --blush: #e8bfbf; --blush-deep: #d4908f;
+      --text-light: #8a7a72; --text-mid: #4a3f3a; --men-color: #5a6a7a;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--off-white); color: var(--black); overflow-x: hidden; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,247,244,0.97); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--beige);
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: var(--black); text-decoration: none; }
+    .nav-logo span { color: var(--blush-deep); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-light); text-decoration: none; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+    .shop-hero { background: var(--black); padding: 60px 40px; text-align: center; position: relative; overflow: hidden; }
+    .shop-hero::before { content: 'SOON'; position: absolute; font-family: 'Cormorant Garamond', serif; font-size: 180px; color: rgba(255,255,255,0.03); top: 50%; left: 50%; transform: translate(-50%,-50%); pointer-events: none; }
+    .shop-hero-tag { font-size: 0.65rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--blush-deep); margin-bottom: 16px; }
+    .shop-hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,6vw,72px); font-weight: 300; color: var(--off-white); letter-spacing: 0.08em; margin-bottom: 16px; }
+    .shop-hero-title em { font-style: italic; color: var(--blush); }
+    .launch-badge { display: inline-block; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--blush-deep); border: 1px solid var(--blush-deep); padding: 8px 24px; }
+
+    /* GENDER TABS */
+    .gender-tabs { display: flex; background: var(--black); border-top: 1px solid rgba(255,255,255,0.06); }
+    .gender-tab { flex: 1; padding: 18px; font-family: 'Jost', sans-serif; font-size: 0.68rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--nude); background: none; border: none; cursor: pointer; transition: all 0.3s; border-bottom: 2px solid transparent; }
+    .gender-tab.active { color: var(--off-white); border-bottom-color: var(--blush-deep); }
+    .gender-tab.men-tab.active { border-bottom-color: #7a9ab5; }
+
+    /* FILTERS */
+    .filter-bar { padding: 24px 40px; border-bottom: 1px solid var(--beige); }
+    .filter-group { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .filter-btn { font-family: 'Jost', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-light); border: 1px solid var(--beige); background: transparent; padding: 9px 20px; cursor: pointer; transition: all 0.3s; }
+    .filter-btn:hover, .filter-btn.active { background: var(--black); color: var(--off-white); border-color: var(--black); }
+    .filter-btn.men-active { background: var(--men-color); border-color: var(--men-color); color: white; }
+
+    /* SECTIONS */
+    .shop-main { padding: 60px 40px; max-width: 1400px; margin: 0 auto; }
+    .gender-section { display: none; }
+    .gender-section.active { display: block; }
+    .section-heading { text-align: center; margin-bottom: 48px; }
+    .section-heading h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(28px,4vw,48px); font-weight: 300; margin-bottom: 8px; }
+    .section-heading h2 em { font-style: italic; color: var(--blush-deep); }
+    .section-heading h2 em.men-em { color: #7a9ab5; }
+    .section-heading p { font-size: 0.75rem; color: var(--text-light); letter-spacing: 0.1em; }
+    .category-section { margin-bottom: 64px; }
+    .category-title { font-family: 'Jost', sans-serif; font-size: 0.62rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-light); padding-bottom: 16px; border-bottom: 1px solid var(--beige); margin-bottom: 32px; }
+
+    /* GRID & CARDS */
+    .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 36px 28px; }
+    .product-card { background: #fff; position: relative; transition: transform 0.4s, box-shadow 0.4s; }
+    .product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+    .product-image { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--beige); display: flex; align-items: center; justify-content: center; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
+    .product-card:hover .product-image img { transform: scale(1.06); }
+    .product-placeholder { font-size: 3.5rem; user-select: none; }
+    .product-overlay { position: absolute; inset: 0; background: rgba(13,11,10,0.72); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; }
+    .product-card:hover .product-overlay { opacity: 1; }
+    .overlay-text { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--off-white); letter-spacing: 0.12em; }
+    .product-badge { position: absolute; top: 14px; left: 14px; font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; background: var(--blush-deep); color: var(--off-white); padding: 4px 10px; }
+    .product-badge.men-badge { background: var(--men-color); }
+    .product-wishlist { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 13px; opacity: 0; transition: all 0.3s; }
+    .product-card:hover .product-wishlist { opacity: 1; }
+    .product-wishlist:hover { background: var(--blush); }
+    .product-info { padding: 18px; }
+    .product-category { font-size: 0.55rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--blush-deep); margin-bottom: 6px; }
+    .product-category.men-cat { color: var(--men-color); }
+    .product-name { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 400; color: var(--black); margin-bottom: 6px; line-height: 1.3; }
+    .product-desc { font-size: 0.7rem; color: var(--text-light); line-height: 1.7; margin-bottom: 10px; }
+    .product-price { font-size: 0.82rem; color: var(--text-mid); letter-spacing: 0.05em; margin-bottom: 4px; }
+    .price-note { font-size: 0.62rem; color: var(--nude); letter-spacing: 0.08em; margin-bottom: 14px; font-style: italic; }
+
+    .btn-notify { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--black); color: var(--off-white); border: none; cursor: pointer; padding: 13px 20px; font-family: 'Jost', sans-serif; font-size: 0.65rem; letter-spacing: 0.26em; text-transform: uppercase; position: relative; overflow: hidden; transition: letter-spacing 0.3s; }
+    .btn-notify::after { content: ''; position: absolute; inset: 0; background: var(--blush-deep); transform: translateX(-101%); transition: transform 0.4s; }
+    .btn-notify:hover::after { transform: translateX(0); }
+    .btn-notify:hover { letter-spacing: 0.32em; }
+    .btn-notify span { position: relative; z-index: 1; }
+    .btn-notify.men-btn::after { background: var(--men-color); }
+
+    /* MODAL */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999; align-items: center; justify-content: center; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--off-white); padding: 48px 40px; max-width: 440px; width: 90%; text-align: center; position: relative; animation: slideUp 0.4s ease; }
+    .modal-close { position: absolute; top: 16px; right: 20px; font-size: 1.2rem; cursor: pointer; color: var(--text-light); background: none; border: none; }
+    .modal-tag { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--blush-deep); margin-bottom: 12px; }
+    .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; font-weight: 300; margin-bottom: 8px; }
+    .modal-product-name { font-size: 0.78rem; color: var(--text-light); letter-spacing: 0.1em; margin-bottom: 24px; }
+    .modal-divider { width: 40px; height: 1px; background: var(--beige); margin: 0 auto 24px; }
+    .modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .modal-input { font-family: 'Jost', sans-serif; font-size: 0.8rem; color: var(--black); background: #fff; border: 1px solid var(--beige); padding: 14px 18px; outline: none; transition: border-color 0.3s; width: 100%; }
+    .modal-input:focus { border-color: var(--blush-deep); }
+    .modal-input::placeholder { color: var(--nude); }
+    .btn-modal-submit { width: 100%; background: var(--black); color: var(--off-white); border: none; cursor: pointer; padding: 16px; font-family: 'Jost', sans-serif; font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; transition: background 0.3s; }
+    .btn-modal-submit:hover { background: var(--blush-deep); }
+    .modal-success { display: none; padding: 20px 0; }
+    .modal-success p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--blush-deep); }
+    .modal-note-text { font-size: 0.65rem; color: var(--nude); margin-top: 12px; line-height: 1.8; }
+
+    footer { background: var(--black); padding: 48px 40px 32px; text-align: center; margin-top: 80px; }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: var(--off-white); }
+    .footer-logo span { color: var(--blush-deep); }
+    .footer-copy { font-size: 0.62rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.2); margin-top: 24px; }
+
+    @keyframes slideUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; } .nav-links { display: none; }
+      .shop-hero { padding: 40px 20px; } .filter-bar { padding: 18px 12px; }
+      .filter-btn { padding: 8px 12px; font-size: 0.58rem; }
+      .shop-main { padding: 32px 16px; }
+      .products-grid { grid-template-columns: repeat(2,1fr); gap: 14px 10px; }
+      .product-info { padding: 12px; } footer { padding: 40px 20px 24px; }
+    }
+    @media (max-width: 400px) { .products-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">The <span>Seductive</span> Co</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html" class="active">Shop</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="shop-hero">
+  <p class="shop-hero-tag">Pre-Launch Preview</p>
+  <h1 class="shop-hero-title">Our <em>Collections</em></h1>
+  <div class="launch-badge">Launching Soon — Get Notified</div>
+</div>
+
+<div class="gender-tabs">
+  <button class="gender-tab active" onclick="switchGender('women',this)">♀ &nbsp;Women</button>
+  <button class="gender-tab men-tab" onclick="switchGender('men',this)">♂ &nbsp;Men</button>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-group" id="womenFilters">
+    <button class="filter-btn active" onclick="filterCat('all-w',this,'women')">All</button>
+    <button class="filter-btn" onclick="filterCat('clothing',this,'women')">Clothing</button>
+    <button class="filter-btn" onclick="filterCat('lingerie',this,'women')">Lingerie &amp; Innerwear</button>
+  </div>
+  <div class="filter-group" id="menFilters" style="display:none;">
+    <button class="filter-btn active" onclick="filterCat('all-m',this,'men')">All</button>
+    <button class="filter-btn" onclick="filterCat('men-clothing',this,'men')">Clothing</button>
+    <button class="filter-btn" onclick="filterCat('men-innerwear',this,'men')">Innerwear</button>
+    <button class="filter-btn" onclick="filterCat('men-intimate',this,'men')">Intimate Wellness</button>
+  </div>
+</div>
+
+<div class="shop-main">
+
+  <!-- ══ WOMEN ══ -->
+  <div class="gender-section active" id="womenSection">
+    <div class="section-heading">
+      <h2>Women's <em>Collection</em></h2>
+      <p>Curated for the confident modern woman</p>
+    </div>
+
+    <!-- WOMEN CLOTHING -->
+    <div class="category-section" data-wcat="clothing">
+      <div class="category-title">Clothing</div>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">👗</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <span class="product-badge">New</span>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Clothing</p>
+            <h3 class="product-name">Velvet Noir Slip Dress</h3>
+            <p class="product-desc">A floor-length velvet slip dress with a deep V-neckline and adjustable spaghetti straps. Designed for evenings that demand effortless elegance.</p>
+            <p class="product-price">₹7,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Velvet Noir Slip Dress')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">👘</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Clothing</p>
+            <h3 class="product-name">Champagne Silk Co-ord Set</h3>
+            <p class="product-desc">A luxe two-piece set crafted from pure silk-blend fabric in a warm champagne hue. Relaxed fit top meets wide-leg trousers for a perfectly polished look.</p>
+            <p class="product-price">₹8,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Champagne Silk Co-ord Set')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🥻</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Clothing</p>
+            <h3 class="product-name">Blush Draped Midi Dress</h3>
+            <p class="product-desc">Softly draped fabric falls in fluid layers around a fitted bodice. This blush midi dress transitions seamlessly from brunch to candlelit dinners.</p>
+            <p class="product-price">₹6,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Blush Draped Midi Dress')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🩱</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Clothing</p>
+            <h3 class="product-name">Obsidian Cutout Bodysuit</h3>
+            <p class="product-desc">A sleek, form-fitting bodysuit with tasteful cutout detailing at the waist. Made from premium stretch fabric for all-day comfort and all-night confidence.</p>
+            <p class="product-price">₹4,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Obsidian Cutout Bodysuit')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">✨</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Clothing</p>
+            <h3 class="product-name">Ivory Ruched Wrap Top</h3>
+            <p class="product-desc">A wrap-style top with ruched detailing that flatters every silhouette. Ivory tone pairs beautifully with everything from denim to tailored trousers.</p>
+            <p class="product-price">₹5,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Ivory Ruched Wrap Top')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- WOMEN LINGERIE & INNERWEAR -->
+    <div class="category-section" data-wcat="lingerie">
+      <div class="category-title">Lingerie &amp; Innerwear</div>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌸</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <span class="product-badge">New</span>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Lingerie</p>
+            <h3 class="product-name">Rosé Lace Bralette Set</h3>
+            <p class="product-desc">Delicate French lace bralette paired with a matching high-waist brief. Soft rosé tone with scalloped edges — intimacy redefined with quiet luxury.</p>
+            <p class="product-price">₹5,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Rosé Lace Bralette Set')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌙</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Nightwear</p>
+            <h3 class="product-name">Midnight Satin Chemise</h3>
+            <p class="product-desc">A bias-cut satin chemise in deep midnight blue, with spaghetti straps and a subtle lace trim hem. Wear it as sleepwear or style it as a statement top.</p>
+            <p class="product-price">₹6,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Midnight Satin Chemise')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🩰</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Innerwear</p>
+            <h3 class="product-name">Aura Cotton Comfort Bra</h3>
+            <p class="product-desc">Wireless, lightly padded, and crafted from breathable Pima cotton. The Aura bra offers full-day support without compromising on softness or shape.</p>
+            <p class="product-price">₹4,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Aura Cotton Comfort Bra')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">💫</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Lingerie</p>
+            <h3 class="product-name">Celestial Mesh Bodysuit</h3>
+            <p class="product-desc">Sheer mesh bodysuit with embroidered star motifs scattered across the fabric. Elegant enough to be seen, intimate enough to be treasured.</p>
+            <p class="product-price">₹7,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Celestial Mesh Bodysuit')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌺</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category">Innerwear</p>
+            <h3 class="product-name">Hibiscus Seamless Brief Set</h3>
+            <p class="product-desc">Ultra-soft seamless briefs in a trio of blush, nude, and black. No lines, no discomfort — just a second-skin fit that moves with you all day long.</p>
+            <p class="product-price">₹5,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify" onclick="openNotify('Hibiscus Seamless Brief Set')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end women -->
+
+  <!-- ══ MEN ══ -->
+  <div class="gender-section" id="menSection">
+    <div class="section-heading">
+      <h2>Men's <em class="men-em">Collection</em></h2>
+      <p>Style meets comfort for the modern man</p>
+    </div>
+
+    <!-- MEN CLOTHING -->
+    <div class="category-section" data-mcat="men-clothing">
+      <div class="category-title">Clothing</div>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">👔</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <span class="product-badge men-badge">New</span>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Clothing</p>
+            <h3 class="product-name">Slate Linen Resort Shirt</h3>
+            <p class="product-desc">A relaxed-fit linen shirt in slate grey with subtle Cuban collar and mother-of-pearl buttons. Vacation-ready and effortlessly refined.</p>
+            <p class="product-price">₹5,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Slate Linen Resort Shirt')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">👕</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Clothing</p>
+            <h3 class="product-name">Onyx Supima Oversized Tee</h3>
+            <p class="product-desc">Crafted from 100% Supima cotton in a premium heavyweight weave. Oversized silhouette with drop shoulders — the elevated essential every wardrobe needs.</p>
+            <p class="product-price">₹4,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Onyx Supima Oversized Tee')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🧥</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Clothing</p>
+            <h3 class="product-name">Charcoal Structured Blazer</h3>
+            <p class="product-desc">A single-breasted blazer in charcoal wool-blend fabric with a modern slim cut. Designed to take you from boardroom meetings to rooftop evenings without skipping a beat.</p>
+            <p class="product-price">₹9,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Charcoal Structured Blazer')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🩳</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Clothing</p>
+            <h3 class="product-name">Navy Tailored Chino Shorts</h3>
+            <p class="product-desc">Mid-thigh tailored shorts in stretch cotton-twill. Clean lines, zippered side pocket, and a slim fit that pairs as easily with sneakers as it does with loafers.</p>
+            <p class="product-price">₹5,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Navy Tailored Chino Shorts')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🧣</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Clothing</p>
+            <h3 class="product-name">Ivory Merino Knit Polo</h3>
+            <p class="product-desc">A fine-gauge merino wool polo that balances warmth and breathability. Classic ivory with ribbed collar and cuffs — casual luxury at its most wearable.</p>
+            <p class="product-price">₹7,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Ivory Merino Knit Polo')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MEN INNERWEAR -->
+    <div class="category-section" data-mcat="men-innerwear">
+      <div class="category-title">Innerwear</div>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🩲</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <span class="product-badge men-badge">New</span>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Innerwear</p>
+            <h3 class="product-name">Vanta Modal Trunk Pack</h3>
+            <p class="product-desc">Pack of 3 trunks in ultra-soft micro-modal fabric. Ergonomic 3D pouch, flat-lock stitching, and a no-roll waistband — built for lasting comfort.</p>
+            <p class="product-price">₹5,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Vanta Modal Trunk Pack')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🧤</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Innerwear</p>
+            <h3 class="product-name">Cloud Cotton Vest (Pack of 3)</h3>
+            <p class="product-desc">Three premium round-neck vests in breathable Pima cotton. Slim-fit silhouette, reinforced seams, and moisture-wicking fabric for all-day freshness.</p>
+            <p class="product-price">₹4,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Cloud Cotton Vest Pack of 3')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌊</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Innerwear</p>
+            <h3 class="product-name">Cobalt Bamboo Boxer Brief</h3>
+            <p class="product-desc">Eco-friendly bamboo-cotton blend boxer brief in a cobalt-and-grey colourblock design. Naturally anti-bacterial, temperature-regulating, and silky smooth against skin.</p>
+            <p class="product-price">₹5,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Cobalt Bamboo Boxer Brief')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🏃</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Innerwear</p>
+            <h3 class="product-name">Stealth Performance Brief</h3>
+            <p class="product-desc">High-performance brief with 4-way stretch fabric and a contour pouch. Ideal for active days — maximum support, minimum friction, zero compromise on style.</p>
+            <p class="product-price">₹6,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Stealth Performance Brief')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌙</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Men's Innerwear</p>
+            <h3 class="product-name">Noir Satin Sleep Shorts</h3>
+            <p class="product-desc">Luxe satin sleep shorts in deep noir with an elasticated waistband and relaxed wide-leg fit. Redefine your nighttime routine with a touch of indulgence.</p>
+            <p class="product-price">₹7,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Noir Satin Sleep Shorts')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MEN INTIMATE WELLNESS -->
+    <div class="category-section" data-mcat="men-intimate">
+      <div class="category-title">Intimate Wellness</div>
+      <div class="products-grid">
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🌿</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <span class="product-badge men-badge">New</span>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Intimate Wellness</p>
+            <h3 class="product-name">Musk & Vetiver Grooming Kit</h3>
+            <p class="product-desc">A curated intimate grooming kit featuring a precision trimmer, calming post-shave balm with vetiver extract, and a musk-infused cleansing wash. Confidence starts here.</p>
+            <p class="product-price">₹8,499</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Musk & Vetiver Grooming Kit')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">💆</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Intimate Wellness</p>
+            <h3 class="product-name">Obsidian Body Ritual Oil</h3>
+            <p class="product-desc">A warming body oil blended with black seed, sandalwood, and vitamin E. Designed for post-shower hydration and intimate muscle recovery — masculine wellness elevated.</p>
+            <p class="product-price">₹5,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Obsidian Body Ritual Oil')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🧴</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Intimate Wellness</p>
+            <h3 class="product-name">Cipher Sensitive Skin Wash</h3>
+            <p class="product-desc">A pH-balanced intimate wash formulated for men's sensitive skin. Free from parabens, sulfates, and artificial fragrance — just clean, calm, protected skin daily.</p>
+            <p class="product-price">₹4,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Cipher Sensitive Skin Wash')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🔥</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Intimate Wellness</p>
+            <h3 class="product-name">Ember Warming Massage Candle</h3>
+            <p class="product-desc">A dual-purpose soy wax candle that melts into a warm, skin-safe massage oil. Infused with cedarwood and amber — set the mood and indulge in sensory connection.</p>
+            <p class="product-price">₹6,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Ember Warming Massage Candle')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <div class="product-placeholder">🛁</div>
+            <div class="product-overlay"><span class="overlay-text">Coming Soon</span></div>
+            <button class="product-wishlist" onclick="toggleWish(this)">♡</button>
+          </div>
+          <div class="product-info">
+            <p class="product-category men-cat">Intimate Wellness</p>
+            <h3 class="product-name">Solace Recovery Bath Soak</h3>
+            <p class="product-desc">A mineral-rich bath soak with Himalayan salt, eucalyptus, and peppermint. Designed to ease tension, soothe intimate soreness, and restore your body's natural balance.</p>
+            <p class="product-price">₹7,999</p>
+            <p class="price-note">Available at launch</p>
+            <button class="btn-notify men-btn" onclick="openNotify('Solace Recovery Bath Soak')"><span>🔔 Notify Me</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end men -->
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="notifyModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeNotify()">✕</button>
+    <p class="modal-tag">Get Notified</p>
+    <h3>Notify Me</h3>
+    <p class="modal-product-name" id="modalProductName"></p>
+    <div class="modal-divider"></div>
+    <div class="modal-form" id="modalForm">
+      <input type="text" class="modal-input" id="notifyName" placeholder="Your Name" />
+      <input type="email" class="modal-input" id="notifyEmail" placeholder="Email Address *" />
+      <input type="tel" class="modal-input" id="notifyPhone" placeholder="WhatsApp Number (optional)" />
+      <button class="btn-modal-submit" onclick="submitNotify()">🔔 Notify Me at Launch</button>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <p>✦ You're on the list!</p>
+      <p class="modal-note-text">We'll notify you as soon as we launch.<br>Thank you for your interest! 🌸</p>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">The <span>Seductive</span> Co</div>
+  <p style="font-size:0.65rem;letter-spacing:0.15em;color:var(--nude);margin-top:8px;">Feel Confident. Feel Desired.</p>
+  <div class="footer-copy">© 2025 The Seductive Co · Delhi, India</div>
+</footer>
+
+<script>
+  function switchGender(gender, btn) {
+    document.querySelectorAll('.gender-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('womenSection').classList.toggle('active', gender === 'women');
+    document.getElementById('menSection').classList.toggle('active', gender === 'men');
+    document.getElementById('womenFilters').style.display = gender === 'women' ? 'flex' : 'none';
+    document.getElementById('menFilters').style.display = gender === 'men' ? 'flex' : 'none';
+  }
+
+  function filterCat(cat, btn, gender) {
+    const sel = gender === 'women' ? '#womenFilters .filter-btn' : '#menFilters .filter-btn';
+    document.querySelectorAll(sel).forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const sec = gender === 'women' ? '#womenSection .category-section' : '#menSection .category-section';
+    const attr = gender === 'women' ? 'data-wcat' : 'data-mcat';
+    const allKey = gender === 'women' ? 'all-w' : 'all-m';
+    document.querySelectorAll(sec).forEach(s => {
+      s.style.display = (cat === allKey || s.getAttribute(attr) === cat) ? 'block' : 'none';
+    });
+  }
+
+  function toggleWish(btn) {
+    btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+    btn.style.color = btn.textContent === '♥' ? 'var(--blush-deep)' : '';
+  }
+
+  function openNotify(name) {
+    document.getElementById('modalProductName').textContent = name;
+    document.getElementById('modalForm').style.display = 'flex';
+    document.getElementById('modalSuccess').style.display = 'none';
+    document.getElementById('notifyName').value = '';
+    document.getElementById('notifyEmail').value = '';
+    document.getElementById('notifyPhone').value = '';
+    document.getElementById('notifyModal').classList.add('open');
+  }
+  function closeNotify() { document.getElementById('notifyModal').classList.remove('open'); }
+  document.getElementById('notifyModal').addEventListener('click', function(e) { if (e.target === this) closeNotify(); });
+
+  function submitNotify() {
+    const email = document.getElementById('notifyEmail').value;
+    if (!email) { alert('Please enter your email address.'); return; }
+    document.getElementById('modalForm').style.display = 'none';
+    document.getElementById('modalSuccess').style.display = 'block';
+    setTimeout(closeNotify, 3000);
+  }
+</script>
+</body>
+</html>
