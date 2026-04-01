@@ -805,6 +805,79 @@
     setTimeout(closeNotify, 3000);
   }
 </script>
+  <!-- POLICIES SECTION -->
+<section id="policies" style="background:var(--off-white);padding:80px 40px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <p style="font-size:0.65rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--blush-deep);margin-bottom:16px;text-align:center;">Legal</p>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,48px);font-weight:300;color:var(--black);letter-spacing:0.08em;margin-bottom:48px;text-align:center;">Our <em style="font-style:italic;color:var(--blush-deep);">Policies</em></h2>
+
+    <!-- Tabs -->
+    <div style="display:flex;gap:0;border-bottom:1px solid var(--beige);margin-bottom:40px;flex-wrap:wrap;">
+      <button onclick="showPolicy('privacy')" id="tab-privacy" style="font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:12px 24px;border:none;background:none;cursor:pointer;color:var(--blush-deep);border-bottom:2px solid var(--blush-deep);">Privacy Policy</button>
+      <button onclick="showPolicy('terms')" id="tab-terms" style="font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:12px 24px;border:none;background:none;cursor:pointer;color:var(--text-light);border-bottom:2px solid transparent;">Terms & Conditions</button>
+      <button onclick="showPolicy('refund')" id="tab-refund" style="font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:12px 24px;border:none;background:none;cursor:pointer;color:var(--text-light);border-bottom:2px solid transparent;">Return & Refund</button>
+      <button onclick="showPolicy('shipping')" id="tab-shipping" style="font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;padding:12px 24px;border:none;background:none;cursor:pointer;color:var(--text-light);border-bottom:2px solid transparent;">Shipping Policy</button>
+    </div>
+
+    <!-- Privacy Policy -->
+    <div id="policy-privacy" class="policy-content">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:20px;color:var(--black);">Privacy Policy</h3>
+      <p style="font-size:0.72rem;color:var(--text-light);line-height:2;margin-bottom:16px;"><strong>Effective Date:</strong> 2026 | <strong>Brand:</strong> The Seductive Co | <strong>Location:</strong> Delhi, India</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;">At The Seductive Co, we are committed to protecting your personal information. This policy explains how we collect, use, and safeguard your data when you visit our website.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Information We Collect:</strong> We collect your name, email address, phone number, and browsing data when you interact with our website or sign up for notifications.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>How We Use It:</strong> Your information is used to send launch notifications, respond to inquiries, and improve your shopping experience. We never sell your data to third parties.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Cookies:</strong> We use Google Analytics cookies to understand how visitors use our site. You may disable cookies in your browser settings at any time.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;"><strong>Contact:</strong> For any privacy concerns, reach us at theseductiveco@gmail.com or via WhatsApp.</p>
+    </div>
+
+    <!-- Terms & Conditions -->
+    <div id="policy-terms" class="policy-content" style="display:none;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:20px;color:var(--black);">Terms & Conditions</h3>
+      <p style="font-size:0.72rem;color:var(--text-light);line-height:2;margin-bottom:16px;"><strong>Effective Date:</strong> 2026 | <strong>Brand:</strong> The Seductive Co</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;">By accessing or using theseductiveco.in, you agree to be bound by these Terms & Conditions. Please read them carefully before using our website.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Use of Website:</strong> This website is for personal, non-commercial use only. You may not reproduce, distribute, or exploit any content without our written consent.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Pre-Launch:</strong> Products shown on this site are part of a pre-launch preview. Availability, pricing, and designs are subject to change without prior notice.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Intellectual Property:</strong> All content including logo, product names, and designs are the exclusive property of The Seductive Co and protected under applicable laws.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;"><strong>Governing Law:</strong> These terms are governed by the laws of India. Any disputes shall be subject to the jurisdiction of Delhi courts.</p>
+    </div>
+
+    <!-- Return & Refund -->
+    <div id="policy-refund" class="policy-content" style="display:none;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:20px;color:var(--black);">Return & Refund Policy</h3>
+      <p style="font-size:0.72rem;color:var(--text-light);line-height:2;margin-bottom:16px;"><strong>Effective at Launch</strong> | The Seductive Co, Delhi</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;">We want you to love every purchase. If you are not completely satisfied, we offer a hassle-free return and refund process.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Return Window:</strong> Items can be returned within 7 days of delivery. Products must be unused, unwashed, and in original packaging with all tags intact.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Non-Returnable Items:</strong> For hygiene reasons, intimate wellness products and innerwear cannot be returned once opened.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Refund Process:</strong> Once your return is received and inspected, refunds will be processed within 5–7 business days to your original payment method.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;"><strong>To Initiate:</strong> Contact us via WhatsApp at +91 8595088498 with your order details and reason for return.</p>
+    </div>
+
+    <!-- Shipping Policy -->
+    <div id="policy-shipping" class="policy-content" style="display:none;">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;margin-bottom:20px;color:var(--black);">Shipping Policy</h3>
+      <p style="font-size:0.72rem;color:var(--text-light);line-height:2;margin-bottom:16px;"><strong>Effective at Launch</strong> | The Seductive Co, Delhi</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;">We deliver across India with care and speed. Every order is packed with love and dispatched promptly.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Processing Time:</strong> Orders are processed within 1–2 business days after payment confirmation.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Delivery Time:</strong> Standard delivery takes 4–7 business days. Express delivery (2–3 days) will be available at an additional charge.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;margin-bottom:16px;"><strong>Shipping Charges:</strong> Free shipping on orders above ₹999. A flat fee of ₹99 applies on orders below ₹999.</p>
+      <p style="font-size:0.72rem;color:var(--text-mid);line-height:2;"><strong>Tracking:</strong> Once shipped, you will receive a tracking link via WhatsApp or email. For queries, contact us at +91 8595088498.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+function showPolicy(tab) {
+  document.querySelectorAll('.policy-content').forEach(el => el.style.display = 'none');
+  document.getElementById('policy-' + tab).style.display = 'block';
+  document.querySelectorAll('[id^="tab-"]').forEach(btn => {
+    btn.style.color = 'var(--text-light)';
+    btn.style.borderBottom = '2px solid transparent';
+  });
+  document.getElementById('tab-' + tab).style.color = 'var(--blush-deep)';
+  document.getElementById('tab-' + tab).style.borderBottom = '2px solid var(--blush-deep)';
+}
+</script>
   <!-- ABOUT SECTION -->
 <section id="about" style="background:var(--black);padding:80px 40px;text-align:center;">
   <p style="font-size:0.65rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--blush-deep);margin-bottom:16px;">Our Story</p>
