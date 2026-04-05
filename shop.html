@@ -389,23 +389,33 @@
   }
   function closeNotify() { document.getElementById('notifyModal').classList.remove('open'); }
   document.getElementById('notifyModal').addEventListener('click', function(e) { if (e.target === this) closeNotify(); });
-  function submitNotify() {
+ function submitNotify() {
     const name = document.getElementById('notifyName').value;
     const email = document.getElementById('notifyEmail').value;
     const phone = document.getElementById('notifyPhone').value;
     const product = document.getElementById('modalProductName').textContent;
     if (!email) { alert('Please enter your email address.'); return; }
     const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZKVPyJxAg7FqqHsl7SHa9BHS5PK6n60pm9VrXGVf9A2kTs93UfCr6ohSXmKlFYF0dfQ/exec';
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({name, email, phone, product}),
-      headers: {'Content-Type': 'application/json'}
-    }).catch(() => {});
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = SCRIPT_URL;
+    form.target = 'hidden_iframe';
+    const fields = {name, email, phone, product};
+    Object.keys(fields).forEach(key => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = fields[key];
+      form.appendChild(input);
+    });
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
     document.getElementById('modalForm').style.display = 'none';
     document.getElementById('modalSuccess').style.display = 'block';
     setTimeout(closeNotify, 3000);
-  }
-</script>
+  }</script>
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 
 <!-- POLICIES SECTION -->
 <section id="policies" style="background:var(--off-white);padding:80px 40px;">
